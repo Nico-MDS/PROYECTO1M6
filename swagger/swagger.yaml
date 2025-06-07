@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  title: API de Juegos Cognitivos
+  version: 1.0.0
+  description: API REST para la gestión de usuarios y compras de programas cognitivos.
+
+servers:
+  - url: http://localhost:5000
+
+tags:
+  - name: Usuario
+  - name: Programa
+
+paths:
+  /api/user/register:
+    post:
+      tags:
+        - Usuario
+      summary: Registrar un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Usuario registrado
+
+  /api/user/login:
+    post:
+      tags:
+        - Usuario
+      summary: Iniciar sesión
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login exitoso
+
+  /api/user/verifytoken:
+    get:
+      tags:
+        - Usuario
+      summary: Verificar token y obtener perfil
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Token válido
+
+  /api/user/update:
+    put:
+      tags:
+        - Usuario
+      summary: Actualizar usuario autenticado
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Usuario actualizado
+
+  /api/user/delete:
+    delete:
+      tags:
+        - Usuario
+      summary: Eliminar cuenta del usuario autenticado
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Usuario eliminado
+
+  /api/product/create:
+    post:
+      tags:
+        - Programa
+      summary: Crear nueva compra de programa
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [programType, price]
+              properties:
+                programType:
+                  type: string
+                  enum: [basic, standard, premium]
+                price:
+                  type: number
+      responses:
+        '201':
+          description: Programa creado
+
+  /api/product/readall:
+    get:
+      tags:
+        - Programa
+      summary: Obtener todos los programas
+      responses:
+        '200':
+          description: Lista de programas
+
+  /api/product/readone/{id}:
+    get:
+      tags:
+        - Programa
+      summary: Obtener un programa por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalle del programa
+
+  /api/product/update/{id}:
+    put:
+      tags:
+        - Programa
+      summary: Actualizar programa
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                programType:
+                  type: string
+                price:
+                  type: number
+      responses:
+        '200':
+          description: Programa actualizado
+
+  /api/product/delete/{id}:
+    delete:
+      tags:
+        - Programa
+      summary: Eliminar programa
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Programa eliminado
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
