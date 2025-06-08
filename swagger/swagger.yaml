@@ -24,8 +24,7 @@ tags:
 paths:
   /api/user/register:
     post:
-      tags:
-        - Usuario
+      tags: [Usuario]
       summary: Registrar un nuevo usuario
       requestBody:
         required: true
@@ -37,18 +36,20 @@ paths:
               properties:
                 name:
                   type: string
+                  example: Juan Pérez
                 email:
                   type: string
+                  example: juan@example.com
                 password:
                   type: string
+                  example: secreta123
       responses:
         '201':
           description: Usuario registrado
 
   /api/user/login:
     post:
-      tags:
-        - Usuario
+      tags: [Usuario]
       summary: Iniciar sesión
       requestBody:
         required: true
@@ -60,16 +61,17 @@ paths:
               properties:
                 email:
                   type: string
+                  example: juan@example.com
                 password:
                   type: string
+                  example: secreta123
       responses:
         '200':
           description: Login exitoso
 
   /api/user/verifytoken:
     get:
-      tags:
-        - Usuario
+      tags: [Usuario]
       summary: Verificar token y obtener perfil
       security:
         - bearerAuth: []
@@ -79,8 +81,7 @@ paths:
 
   /api/user/update:
     put:
-      tags:
-        - Usuario
+      tags: [Usuario]
       summary: Actualizar usuario autenticado
       security:
         - bearerAuth: []
@@ -93,18 +94,20 @@ paths:
               properties:
                 name:
                   type: string
+                  example: Juan Actualizado
                 email:
                   type: string
+                  example: juan.new@example.com
                 password:
                   type: string
+                  example: nuevaClave456
       responses:
         '200':
           description: Usuario actualizado
 
   /api/user/delete:
     delete:
-      tags:
-        - Usuario
+      tags: [Usuario]
       summary: Eliminar cuenta del usuario autenticado
       security:
         - bearerAuth: []
@@ -114,8 +117,7 @@ paths:
 
   /api/product/create:
     post:
-      tags:
-        - Programa
+      tags: [Programa]
       summary: Crear nueva compra de programa
       security:
         - bearerAuth: []
@@ -130,16 +132,17 @@ paths:
                 programType:
                   type: string
                   enum: [basic, standard, premium]
+                  example: basic
                 price:
                   type: number
+                  example: 99.99
       responses:
         '201':
           description: Programa creado
 
   /api/product/readall:
     get:
-      tags:
-        - Programa
+      tags: [Programa]
       summary: Obtener todos los programas
       responses:
         '200':
@@ -147,8 +150,7 @@ paths:
 
   /api/product/readone/{id}:
     get:
-      tags:
-        - Programa
+      tags: [Programa]
       summary: Obtener un programa por ID
       parameters:
         - name: id
@@ -162,9 +164,8 @@ paths:
 
   /api/product/update/{id}:
     put:
-      tags:
-        - Programa
-      summary: Actualizar programa
+      tags: [Programa]
+      summary: Actualizar programa (requiere autenticación del dueño)
       security:
         - bearerAuth: []
       parameters:
@@ -182,17 +183,18 @@ paths:
               properties:
                 programType:
                   type: string
+                  example: premium
                 price:
                   type: number
+                  example: 129.99
       responses:
         '200':
           description: Programa actualizado
 
   /api/product/delete/{id}:
     delete:
-      tags:
-        - Programa
-      summary: Eliminar programa
+      tags: [Programa]
+      summary: Eliminar programa (requiere autenticación del dueño)
       security:
         - bearerAuth: []
       parameters:
