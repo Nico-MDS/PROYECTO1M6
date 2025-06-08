@@ -5,7 +5,7 @@ info:
   description: API REST para la gestión de usuarios y compras de programas cognitivos.
 
 servers:
-  - url: https://proyecto1m6-api.onrender.com/
+  - url: https://proyecto1m6-api.onrender.com
 
 tags:
   - name: Usuario
