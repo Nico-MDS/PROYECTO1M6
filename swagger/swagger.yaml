@@ -7,6 +7,16 @@ info:
 servers:
   - url: https://proyecto1m6-api.onrender.com
 
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+
 tags:
   - name: Usuario
   - name: Programa
@@ -194,10 +204,3 @@ paths:
       responses:
         '200':
           description: Programa eliminado
-
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
