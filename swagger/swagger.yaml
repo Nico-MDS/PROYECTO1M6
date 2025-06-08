@@ -6,6 +6,8 @@ info:
 
 servers:
   - url: https://proyecto1m6-api.onrender.com
+  - url: http://localhost:5000/api-docs
+    description: Servidor local para desarrollo
 
 components:
   securitySchemes:
