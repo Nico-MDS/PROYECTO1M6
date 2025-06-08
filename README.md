@@ -28,12 +28,13 @@ Este proyecto es una API REST desarrollada como parte del Módulo 6 del programa
    npm install
 
 3. Crea un archivo .env con tus credenciales:
-  
+
 - MONGO_URI=tu_uri_de_mongodb_atlas
 - JWT_SECRET=tu_clave_secreta
+ 
+4. Inicia el servidor en modo desarrollo:
 
-4.Inicia el servidor en modo desarrollo:
-  npm run dev
+- npm run dev  
 
 5. Abre el navegador
 
