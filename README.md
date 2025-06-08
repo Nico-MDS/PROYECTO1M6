@@ -23,7 +23,6 @@ Este proyecto es una API REST desarrollada como parte del Módulo 6 del programa
 
 ---
 # 1. Clona el repositorio:
-   ```bash
    git clone https://github.com/Nico-MDS/PROYECTO1M6.git
    cd PROYECTO1M6
 ---
