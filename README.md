@@ -15,34 +15,7 @@ Este proyecto es una API REST desarrollada como parte del Módulo 6 del programa
 ---
 
 ## 📁 Estructura del proyecto
-
-Proyecto1M6/
-│
-├── controllers/
-│ ├── userController.js
-│ └── productController.js
-│
-├── middleware/
-│ └── auth.middleware.js
-│
-├── models/
-│ ├── userModel.js
-│ └── productModel.js
-│
-├── routes/
-│ ├── userRoutes.js
-│ └── productRoutes.js
-│
-├── swagger/
-│ └── swagger.yaml
-│
-├── .env # No se sube a GitHub
-├── .gitignore
-├── server.js
-├── package.json
-
-
----
+![image](https://github.com/user-attachments/assets/1368641b-ae82-4aa1-9464-25e621671290)
 
 ## 🔧 Instrucciones para correr el proyecto localmente
 
