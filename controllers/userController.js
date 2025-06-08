@@ -1,4 +1,3 @@
-// controllers/userController.js
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -94,7 +93,7 @@ const updateUser = async (req, res) => {
 
     if (name) user.name = name;
     if (email) user.email = email;
-    if (password) user.password = password; // Se hasheará automáticamente en el modelo
+    if (password) user.password = password; // se hashea automáticamente desde el modelo
 
     const updatedUser = await user.save();
 
@@ -114,10 +113,10 @@ const updateUser = async (req, res) => {
 // DELETE /api/user/delete
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
-
-    await user.deleteOne();
+    const deletedUser = await User.findByIdAndDelete(req.user.id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
 
     return res.status(200).json({ message: 'Usuario eliminado correctamente' });
   } catch (error) {
